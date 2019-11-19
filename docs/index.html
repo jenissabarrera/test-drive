@@ -15,7 +15,7 @@
 
 <body>
 
-	<div class="pull-right"> <button type="button" id="chat-button-simple" class="btn" onclick=openTab()>Start
+	<div class="pull-right"> <button type="button" id="chat-button-simple" class="btn" onclick="openTab()">Start
 			Chat</button> </div>
 	<iframe width=100% height=100% src=https://testdrive.genesys.com/> </iframe> </body> </html> <script
 		id="purecloud-webchat-js" type="text/javascript" src="https://apps.mypurecloud.com/webchat/jsapi-v1.js"
@@ -23,125 +23,126 @@
 		deployment-key="a4ff156d-fb50-45e0-96b9-c9909db11964"></script>
 
 		<script type="text/javascript">
-			// function openTab() {
+			function openTab() {
 
-			// 	ININ.webchat.create(chatConfig, function (err, webchat) {
-			// 		if (err) {
-			// 			console.error(err);
-			// 			throw err;
-			// 		}
+				ININ.webchat.create(chatConfig, function (err, webchat) {
+					if (err) {
+						console.error(err);
+						throw err;
+					}
 
-			// 		webchat.renderPopup({
-			// 			width: 400,
-			// 			height: 400,
-			// 			title: 'Chat'
-			// 		});
-			// 	});
+					webchat.renderPopup({
+						width: 400,
+						height: 400,
+						title: 'Chat',
+						newTab: true
+					});
+				});
 
-			// }
+			}
 
-			// let chatConfig = {
-			// 	"webchatAppUrl": "https://apps.mypurecloud.com/webchat",
-			// 	"webchatServiceUrl": "https://realtime.mypurecloud.com:443",
-			// 	"orgId": "15341",
-			// 	"orgGuid": "03671e89-0883-48b0-8284-cd5260c38745",
-			// 	"orgName": "genesys4",
-			// 	"queueName": "Test Drive Sample Queue",
-			// 	"logLevel": "DEBUG",
-			// 	"locale": "en",
-			// 	"data": {
-			// 		"firstName": "",
-			// 		"lastName": "",
-			// 		"addressStreet": "",
-			// 		"addressCity": "",
-			// 		"addressPostalCode": "",
-			// 		"addressState": "",
-			// 		"phoneNumber": "",
-			// 		"customField1Label": "",
-			// 		"customField1": "",
-			// 		"customField2Label": "",
-			// 		"customField2": "",
-			// 		"customField3Label": "",
-			// 		"customField3": "",
-			// 		"email": ""
-			// 	},
-			// 	"companyLogo": {
-			// 		"width": 600,
-			// 		"height": 149,
-			// 		"url": "https://d3a63qt71m2kua.cloudfront.net/developer-tools/1437/assets/images/PC-blue-nomark.png"
-			// 	},
-			// 	"companyLogoSmall": {
-			// 		"width": 25,
-			// 		"height": 25,
-			// 		"url": "https://d3a63qt71m2kua.cloudfront.net/developer-tools/1437/assets/images/companylogo.png"
-			// 	},
-			// 	"agentAvatar": {
-			// 		"width": 462,
-			// 		"height": 462,
-			// 		"url": "https://d3a63qt71m2kua.cloudfront.net/developer-tools/1437/assets/images/agent.jpg"
-			// 	},
-			// 	"welcomeMessage": "Thanks for chatting using the dev tools chat page.",
-			// 	"cssClass": "webchat-frame",
-			// 	"css": {
-			// 		"width": "100%",
-			// 		"height": "100%"
-			// 	}
-			// };
-
-
-
-			  function openTab() {
-
-
-
-				// var myWindow = window.open("", "", "width=425,height=400");
-				var myWindow = window.open("customPlugin.command('WebChat.open')", "", "width=200,height=100");
-				customPlugin.command('WebChat.open');
-
-
-			  }
-
-				window._genesys = {
-
-			      widgets: {
-			        webchat: {
-			          transport: {
-			            type: 'purecloud-v2-sockets',
-			            dataURL: 'https://api.mypurecloud.com',
-			            deploymentKey : 'e42fd878-9f5f-45ee-86bb-be4ec90ac33f',
-			            orgGuid : '03671e89-0883-48b0-8284-cd5260c38745',
-			            interactionData: {
-			              routing: {
-			                targetType: 'QUEUE',
-			                targetAddress: 'Test Drive Sample Queue',
-			                priority: 2
-			              }
-			            }
-			          },
-			          userData: {
-			            addressStreet: '64472 Brown Street',
-			            addressCity: 'Lindgrenmouth',
-			            addressPostalCode: '50163-2735',
-			            addressState: 'FL',
-			            phoneNumber: '1-916-892-2045 x293',
-			            phoneType: 'Cell',
-			            customerId: '59606',
-			            // These fields should be provided via advanced configuration
-			            // firstName: 'Praenomen',
-			            // lastName: 'Gens',
-			            // email: 'praenomen.gens@calidumlitterae.com',
-			            // subject: 'Chat subject'
-			          }
-			        }
-			      }
+			let chatConfig = {
+				"webchatAppUrl": "https://apps.mypurecloud.com/webchat",
+				"webchatServiceUrl": "https://realtime.mypurecloud.com:443",
+				"orgId": "15341",
+				"orgGuid": "03671e89-0883-48b0-8284-cd5260c38745",
+				"orgName": "genesys4",
+				"queueName": "Test Drive Sample Queue",
+				"logLevel": "DEBUG",
+				"locale": "en",
+				"data": {
+					"firstName": "Rosa",
+					"lastName": "Pellegrini",
+					"addressStreet": "1468 Lodite Pike",
+					"addressCity": "Dicducro",
+					"addressPostalCode": "21107",
+					"addressState": "WA",
+					"phoneNumber": "(723) 509-1473",
+					"customField1Label": "",
+					"customField1": "",
+					"customField2Label": "",
+					"customField2": "",
+					"customField3Label": "",
+					"customField3": "",
+					"email": "zodciroh@if.uk"
+				},
+				"companyLogo": {
+					"width": 600,
+					"height": 149,
+					"url": "https://d3a63qt71m2kua.cloudfront.net/developer-tools/1437/assets/images/PC-blue-nomark.png"
+				},
+				"companyLogoSmall": {
+					"width": 25,
+					"height": 25,
+					"url": "https://d3a63qt71m2kua.cloudfront.net/developer-tools/1437/assets/images/companylogo.png"
+				},
+				"agentAvatar": {
+					"width": 462,
+					"height": 462,
+					"url": "https://d3a63qt71m2kua.cloudfront.net/developer-tools/1437/assets/images/agent.jpg"
+				},
+				"welcomeMessage": "Thanks for chatting using the dev tools chat page.",
+				"cssClass": "webchat-frame",
+				"css": {
+					"width": "100%",
+					"height": "100%"
 				}
+			};
 
-				const customPlugin = CXBus.registerPlugin('Custom');
-			    customPlugin.subscribe('WebChatService.started', function (e) {
-			      console.log('Chat started', e);
-			    });
 
-			    customPlugin.subscribe('WebChatService.ended', function (e) {
-			      console.log('Chat ended', e);
-			    });
+
+			//   function openTab() {
+
+
+
+			// 	// var myWindow = window.open("", "", "width=425,height=400");
+			// 	// var myWindow = window.open("customPlugin.command('WebChat.open')", "", "width=200,height=100");
+			// 	customPlugin.command('WebChat.open');
+
+
+			//   }
+
+			// 	window._genesys = {
+
+			//       widgets: {
+			//         webchat: {
+			//           transport: {
+			//             type: 'purecloud-v2-sockets',
+			//             dataURL: 'https://api.mypurecloud.com',
+			//             deploymentKey : 'e42fd878-9f5f-45ee-86bb-be4ec90ac33f',
+			//             orgGuid : '03671e89-0883-48b0-8284-cd5260c38745',
+			//             interactionData: {
+			//               routing: {
+			//                 targetType: 'QUEUE',
+			//                 targetAddress: 'Test Drive Sample Queue',
+			//                 priority: 2
+			//               }
+			//             }
+			//           },
+			//           userData: {
+			//             addressStreet: '64472 Brown Street',
+			//             addressCity: 'Lindgrenmouth',
+			//             addressPostalCode: '50163-2735',
+			//             addressState: 'FL',
+			//             phoneNumber: '1-916-892-2045 x293',
+			//             phoneType: 'Cell',
+			//             customerId: '59606',
+			//             // These fields should be provided via advanced configuration
+			//             // firstName: 'Praenomen',
+			//             // lastName: 'Gens',
+			//             // email: 'praenomen.gens@calidumlitterae.com',
+			//             // subject: 'Chat subject'
+			//           }
+			//         }
+			//       }
+			// 	}
+
+			// 	const customPlugin = CXBus.registerPlugin('Custom');
+			//     customPlugin.subscribe('WebChatService.started', function (e) {
+			//       console.log('Chat started', e);
+			//     });
+
+			//     customPlugin.subscribe('WebChatService.ended', function (e) {
+			//       console.log('Chat ended', e);
+			//     });
 		</script>
