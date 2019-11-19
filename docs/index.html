@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+		<script src="https://apps.mypurecloud.com/widgets/9.0/cxbus.min.js" onload="javascript:CXBus.configure({debug:false,pluginsPath:'https://apps.mypurecloud.com/widgets/9.0/plugins/'}); CXBus.loadPlugin('widgets-core');"></script>
+	<title>
+		Test Drive Sample
+	</title>
+</head>
+<body>
+
+	<div class="pull-right"> <button type="button" id="chat-button-simple" class="btn" onclick=openTab()>Start Chat</button> </div>
+	<iframe width=100% height=400% src=https://testdrive.genesys.com/></iframe>
+
+</body>
+</html>
+  
+  <script type="text/javascript">
+
+  function openTab() {
+
+	// var myWindow = window.open("", "", "width=425,height=400");
+	var myWindow = window.open("customPlugin.command('WebChat.open')", "", "width=200,height=100");
+	customPlugin.command('WebChat.open');
+
+
+  }
+
+	window._genesys = {
+		
+      widgets: {
+        webchat: {
+          transport: {
+            type: 'purecloud-v2-sockets',
+            dataURL: 'https://api.mypurecloud.com',
+            deploymentKey : 'e42fd878-9f5f-45ee-86bb-be4ec90ac33f',
+            orgGuid : '03671e89-0883-48b0-8284-cd5260c38745',
+            interactionData: {
+              routing: {
+                targetType: 'QUEUE',
+                targetAddress: 'Test Drive Sample Queue',
+                priority: 2
+              }
+            }
+          },
+          userData: {
+            addressStreet: '64472 Brown Street',
+            addressCity: 'Lindgrenmouth',
+            addressPostalCode: '50163-2735',
+            addressState: 'FL',
+            phoneNumber: '1-916-892-2045 x293',
+            phoneType: 'Cell',
+            customerId: '59606',
+            // These fields should be provided via advanced configuration
+            // firstName: 'Praenomen',
+            // lastName: 'Gens',
+            // email: 'praenomen.gens@calidumlitterae.com',
+            // subject: 'Chat subject'
+          }
+        }
+      }
+    }
+
+    const customPlugin = CXBus.registerPlugin('Custom');
+    customPlugin.subscribe('WebChatService.started', function (e) {
+      console.log('Chat started', e);
+    });
+
+    customPlugin.subscribe('WebChatService.ended', function (e) {
+      console.log('Chat ended', e);
+    });
+
+</script>
