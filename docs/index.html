@@ -2,30 +2,70 @@
 <html>
 
 <head>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<script src="https://apps.mypurecloud.com/widgets/9.0/cxbus.min.js"
 		onload="javascript:CXBus.configure({debug:false,pluginsPath:'https://apps.mypurecloud.com/widgets/9.0/plugins/'}); CXBus.loadPlugin('widgets-core');">
 	</script>
-	<script src="https://sdk-cdn.mypurecloud.com/client-apps/<taggedversion>/purecloud-client-app-sdk-<hash>.min.js">
-	</script>
-	<script id="purecloud-webchat-js" type="text/javascript" src="https://apps.mypurecloud.com/webchat/jsapi-v1.js"
-		region="us-east-1" org-guid="03671e89-0883-48b0-8284-cd5260c38745"
-		deployment-key="e020b006-2284-429e-901d-fdd836c258e1"></script>
-	<title>
-		Test Drive Sample
-	</title>
+	<script src='https://code.jquery.com/jquery-3.3.1.min.js'
+    integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=' crossorigin='anonymous'></script>
+	<script src="https://sdk-cdn.mypurecloud.com/javascript/62.0.0/purecloud-platform-client-v2.min.js"></script>
+
+<title> Test Drive Sample </title>
 </head>
 
 <body>
-	<button type="button" id="chat-button-simple" class="btn"
+	<!-- <button type="button" id="chat-button-simple" class="btn"
 		onclick="startChat()">Start
-		Chat</button>
+		Chat</button> -->
+		<button type="button" id="chat-button-simple" class="btn" data-toggle="modal" data-target="#myModal">Start
+				Chat</button>
 	<div>
 	<iframe width="100%" height="100%" style="position: absolute;" src=https://testdrive.genesys.com/> </iframe>
 	</div>
+
+
+
+	
+
 </body> 
-</html> 
- <script>
+</html>
+<script id="purecloud-webchat-js" type="text/javascript" src="https://apps.mypurecloud.com/webchat/jsapi-v1.js" region="us-east-1" org-guid="03671e89-0883-48b0-8284-cd5260c38745"
+  deployment-key="e020b006-2284-429e-901d-fdd836c258e1"></script>
+
+<script>
+	const clientId = '282c9370-5e3c-4b4d-8bee-467fb8adde70';
+	const redirectUri = window.location.href;
+	const platformClient = require('platformClient');
+	const client = platformClient.ApiClient.instance;
+	let UsersApi = new platformClient.UsersApi();
+	let userData = {}
+
+	  $(document).ready(() => {
+	  client.loginImplicitGrant(clientId, redirectUri)
+	  .then(() => {
+	  let token = client.authData.accessToken;
+	  getUser();
+	  })
+	  .catch((err) => console.error(err));
+	  })
+
+	function getUser() {
+	console.log("test user:")
+	let opts = {
+	'expand': ["organization"] // [String] | Which fields, if any, to expand.
+	};
+
+	UsersApi.getUsersMe(opts)
+	.then((userData) => {
+	console.log(`getUsersMe success! data: ${JSON.stringify(userData, null, 2)}`);
+	})
+	.catch((err) => {
+	console.log('There was a failure calling getUsersMe');
+	console.error(err);
+	});
+
+	}
+
 	 function startChat() {
 		ININ.webchat.create(chatConfig, function(err, webchat) {
 			if (err) {
@@ -53,18 +93,6 @@
 			"locale": "en",
 			"data": {
 			"firstName": "Rosa",
-			"lastName": "Pellegrini",
-			"addressStreet": "1468 Lodite Pike",
-			"addressCity": "Dicducro",
-			"addressPostalCode": "21107",
-			"addressState": "WA",
-			"phoneNumber": "(723) 509-1473",
-			"customField1Label": "",
-			"customField1": "",
-			"customField2Label": "",
-			"customField2": "",
-			"customField3Label": "",
-			"customField3": "",
 			"email": "zodciroh@if.uk"
 			},
 			"companyLogo": {
