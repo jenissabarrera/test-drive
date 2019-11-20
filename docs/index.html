@@ -10,92 +10,85 @@
 	</script>
 	<script id="purecloud-webchat-js" type="text/javascript" src="https://apps.mypurecloud.com/webchat/jsapi-v1.js"
 		region="us-east-1" org-guid="03671e89-0883-48b0-8284-cd5260c38745"
-		deployment-key="a4ff156d-fb50-45e0-96b9-c9909db11964">
-	</script>
+		deployment-key="e020b006-2284-429e-901d-fdd836c258e1"></script>
 	<title>
 		Test Drive Sample
 	</title>
 </head>
 
 <body>
-
-	<button type="button" id="chat-button-simple" class="btn" onclick="openTab()">Start Chat</button>
-
+	<button type="button" id="chat-button-simple" class="btn"
+		onclick="startChat()">Start
+		Chat</button>
 	<div>
-		<iframe width="100%" height="100%" style="position: absolute;" src=https://testdrive.genesys.com/> </iframe>
+	<iframe width="100%" height="100%" style="position: absolute;" src=https://testdrive.genesys.com/> </iframe>
 	</div>
+</body> 
+</html> 
+ <script>
+	 function startChat() {
+		ININ.webchat.create(chatConfig, function(err, webchat) {
+			if (err) {
+			console.error(err);
+			throw err;
+			}
 
-</body>
+			webchat.renderPopup({
+			width: 400,
+			height: 400,
+			title: 'Chat'
+			});
+			});
 
-</html>
-		
-		
 
-			<script type="text/javascript">
-				function openTab() {
+	 }
+			let chatConfig = {
+			"webchatAppUrl": "https://apps.mypurecloud.com/webchat",
+			"webchatServiceUrl": "https://realtime.mypurecloud.com:443",
+			"orgId": "15341",
+			"orgGuid": "03671e89-0883-48b0-8284-cd5260c38745",
+			"orgName": "genesys4",
+			"queueName": "Test Drive Sample Queue",
+			"logLevel": "DEBUG",
+			"locale": "en",
+			"data": {
+			"firstName": "Rosa",
+			"lastName": "Pellegrini",
+			"addressStreet": "1468 Lodite Pike",
+			"addressCity": "Dicducro",
+			"addressPostalCode": "21107",
+			"addressState": "WA",
+			"phoneNumber": "(723) 509-1473",
+			"customField1Label": "",
+			"customField1": "",
+			"customField2Label": "",
+			"customField2": "",
+			"customField3Label": "",
+			"customField3": "",
+			"email": "zodciroh@if.uk"
+			},
+			"companyLogo": {
+			"width": 600,
+			"height": 149,
+			"url": "https://d3a63qt71m2kua.cloudfront.net/developer-tools/1438/assets/images/PC-blue-nomark.png"
+			},
+			"companyLogoSmall": {
+			"width": 25,
+			"height": 25,
+			"url": "https://d3a63qt71m2kua.cloudfront.net/developer-tools/1438/assets/images/companylogo.png"
+			},
+			"agentAvatar": {
+			"width": 462,
+			"height": 462,
+			"url": "https://d3a63qt71m2kua.cloudfront.net/developer-tools/1438/assets/images/agent.jpg"
+			},
+			"welcomeMessage": "Thanks for chatting using the dev tools chat page.",
+			"cssClass": "webchat-frame",
+			"css": {
+			"width": "100%",
+			"height": "100%"
+			}
+			};
 
-					ININ.webchat.create(chatConfig, function (err, webchat) {
-						if (err) {
-							console.error(err);
-							throw err;
-						}
 
-						webchat.renderPopup({
-							newTab: true,
-							width: 400,
-							height: 400,
-							title: 'Chat'
-
-						});
-					});
-
-				}
-
-				let chatConfig = {
-					"webchatAppUrl": "https://apps.mypurecloud.com/webchat",
-					"webchatServiceUrl": "https://realtime.mypurecloud.com:443",
-					"orgId": "15341",
-					"orgGuid": "03671e89-0883-48b0-8284-cd5260c38745",
-					"orgName": "genesys4",
-					"queueName": "Test Drive Sample Queue",
-					"logLevel": "DEBUG",
-					"locale": "en",
-					"data": {
-						"firstName": "Rosa",
-						"lastName": "Pellegrini",
-						"addressStreet": "1468 Lodite Pike",
-						"addressCity": "Dicducro",
-						"addressPostalCode": "21107",
-						"addressState": "WA",
-						"phoneNumber": "(723) 509-1473",
-						"customField1Label": "",
-						"customField1": "",
-						"customField2Label": "",
-						"customField2": "",
-						"customField3Label": "",
-						"customField3": "",
-						"email": "zodciroh@if.uk"
-					},
-					"companyLogo": {
-						"width": 600,
-						"height": 149,
-						"url": "https://d3a63qt71m2kua.cloudfront.net/developer-tools/1437/assets/images/PC-blue-nomark.png"
-					},
-					"companyLogoSmall": {
-						"width": 25,
-						"height": 25,
-						"url": "https://d3a63qt71m2kua.cloudfront.net/developer-tools/1437/assets/images/companylogo.png"
-					},
-					"agentAvatar": {
-						"width": 462,
-						"height": 462,
-						"url": "https://d3a63qt71m2kua.cloudfront.net/developer-tools/1437/assets/images/agent.jpg"
-					},
-					"welcomeMessage": "Thanks for chatting using the dev tools chat page.",
-					"cssClass": "webchat-frame",
-					"css": {
-						"width": "50%",
-						"height": "50%"
-					}
-				};
 			</script>
