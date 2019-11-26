@@ -57,8 +57,6 @@
 					client.loginImplicitGrant(clientId, redirectUri)
 						.then(() => {
 							let token = client.authData.accessToken;
-							alert(JSON.stringify(ClientApp));
-							myClientApp.alerting.showToastPopup('Hello', 'PureCloud');
 							alert(redirectUri)
 							getUser();
 						})
