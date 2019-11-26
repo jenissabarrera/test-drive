@@ -37,12 +37,12 @@
 				const client = platformClient.ApiClient.instance;
 				let UsersApi = new platformClient.UsersApi();
 				let userData = {};
-				var ClientApp = window.purecloud.apps.ClientApp;
-				var myClientApp = new ClientApp({
+				let ClientApp = window.purecloud.apps.ClientApp;
+				let myClientApp = new ClientApp({
 					pcEnvironmentQueryParam: 'pcEnvironment'
 				});
 
-				alert(pcEnvironment);
+				alert("This is test" + myClientApp.pcEnvironment);
 				// document.addEventListener('DOMContentLoaded', function () {
 				// 	var ClientApp = window.purecloud.apps.ClientApp;
 				// 	var myClientApp = new ClientApp({
