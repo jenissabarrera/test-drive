@@ -11,13 +11,11 @@
 		integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=' crossorigin='anonymous'></script>
 	<script src="https://sdk-cdn.mypurecloud.com/javascript/62.0.0/purecloud-platform-client-v2.min.js"></script>
 	<script src="https://sdk-cdn.mypurecloud.com/client-apps/1.3.0/purecloud-client-app-sdk.js"></script>
-	<title> Test Drive Sample </title>
+	<title> Test Drive App </title>
 </head>
 
 <body>
-	<!-- <button type="button" id="chat-button-simple" class="btn"
-		onclick="startChat()">Start
-		Chat</button> -->
+	
 	<button type="button" id="chat-button-simple" class="btn" onclick="startChat()">Start Chat</button>
 	<div>
 		<iframe width="100%" height="100%" style="position: absolute;" src=https://testdrive.genesys.com/> </iframe>
@@ -25,12 +23,13 @@
 </body> 
 </html> 
 
+<!-- Import purecloud webchat api -->
 <script id="purecloud-webchat-js" type="text/javascript"
 			src="https://apps.mypurecloud.com/webchat/jsapi-v1.js" region="us-east-1"
 			org-guid="03671e89-0883-48b0-8284-cd5260c38745" deployment-key="e020b006-2284-429e-901d-fdd836c258e1">
 </script>
 
-			<script>
+			<script type="module">
 				const clientId = '282c9370-5e3c-4b4d-8bee-467fb8adde70';
 				const redirectUri = window.location.href;
 				const platformClient = require('platformClient');
@@ -41,8 +40,11 @@
 				let myClientApp = new ClientApp({
 					pcEnvironmentQueryParam: 'pcEnvironment'
 				});
+				import clientIds from './scripts/clientIDs.js';
+				
+				
 
-				alert("This is test" + myClientApp.pcEnvironment);
+			
 				// document.addEventListener('DOMContentLoaded', function () {
 				// 	var ClientApp = window.purecloud.apps.ClientApp;
 				// 	var myClientApp = new ClientApp({
@@ -57,14 +59,13 @@
 					client.loginImplicitGrant(clientId, redirectUri)
 						.then(() => {
 							let token = client.authData.accessToken;
-							alert(redirectUri)
+							console.log('client IDs:' + clientIds);
 							getUser();
 						})
 						.catch((err) => console.error(err));
 				})
 
 				function getUser() {
-					console.log("test user:")
 					let opts = {
 						'expand': ["organization"] // [String] | Which fields, if any, to expand.
 					};
