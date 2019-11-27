@@ -59,7 +59,7 @@
 					client.loginImplicitGrant(clientId, redirectUri)
 						.then(() => {
 							let token = client.authData.accessToken;
-							console.log('client IDs:' + clientIds);
+							alert("This is client id:" + clientIds)
 							getUser();
 						})
 						.catch((err) => console.error(err));
