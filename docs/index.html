@@ -29,7 +29,7 @@
 			org-guid="03671e89-0883-48b0-8284-cd5260c38745" deployment-key="e020b006-2284-429e-901d-fdd836c258e1">
 </script>
 
-			<script>
+			<script type="text/javascript">
 				const clientId = '282c9370-5e3c-4b4d-8bee-467fb8adde70';
 				const redirectUri = window.location.href;
 				const platformClient = require('platformClient');
@@ -37,9 +37,11 @@
 				let UsersApi = new platformClient.UsersApi();
 				let userData = {};
 				let ClientApp = window.purecloud.apps.ClientApp;
-				let myClientApp = new ClientApp({
+					let myClientApp = new ClientApp({
 					pcEnvironmentQueryParam: 'pcEnvironment'
 				});
+	
+			
 				// import clientIds from './scripts/clientIDs.js';
 				
 				
@@ -56,10 +58,10 @@
 				// });
 
 				$(document).ready(() => {
+		
 					client.loginImplicitGrant(clientId, redirectUri)
 						.then(() => {
 							let token = client.authData.accessToken;
-							alert("This is client id:" + clientIds)
 							getUser();
 						})
 						.catch((err) => console.error(err));
