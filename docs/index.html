@@ -49,7 +49,7 @@
 
 				$(document).ready(() => {
 
-					alert("test myClientApp" + myClientApp.pcEnvironment)
+					
 					if (myClientApp.pcEnvironment == 'mypurecloud.ie') {
 
 						clientId = clientIds["mypurecloud.ie"]
@@ -60,6 +60,8 @@
 
 					client.loginImplicitGrant(clientId, redirectUri)
 						.then(() => {
+
+							console.log("client id :" + clientId)
 							let token = client.authData.accessToken;
 
 							getUser();
