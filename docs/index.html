@@ -20,7 +20,13 @@
 	<button type="button" id="chat-button-simple" class="btn" onclick="startChat()">Start Chat</button>
 	<div>
 		<iframe width="100%" height="100%" style="position: absolute;" src=https://testdrive.genesys.com/> </iframe>
-			</div> </body> </html> <!-- Import purecloud webchat api -->
+	</div>
+
+</body> 
+
+</html> 
+
+			<!-- Import purecloud webchat api -->
 			<script id="purecloud-webchat-js" type="text/javascript"
 				src="https://apps.mypurecloud.com/webchat/jsapi-v1.js" region="us-east-1"
 				org-guid="03671e89-0883-48b0-8284-cd5260c38745" deployment-key="e020b006-2284-429e-901d-fdd836c258e1">
@@ -29,17 +35,21 @@
 
 
 			<script>
+				// Declare client Id to be used later depending on the purecloud region
 				let clientId = "";
 				const redirectUri = window.location.href;
 				const platformClient = require('platformClient');
 				const client = platformClient.ApiClient.instance;
 				let UsersApi = new platformClient.UsersApi();
+				// Declare userdata that will handle usersApi generated values. 
 				let userData = {};
+				// Declare variables that will be used by client app sdk
 				let ClientApp = window.purecloud.apps.ClientApp;
 				let myClientApp = new ClientApp({
 					pcEnvironmentQueryParam: 'pcEnvironment'
 				});
 
+				// Temporary client Ids per purecloud region
 				let clientIds = {
 
 					'mypurecloud.com': '282c9370-5e3c-4b4d-8bee-467fb8adde70',
@@ -48,7 +58,6 @@
 
 
 				$(document).ready(() => {
-
 					
 					if (myClientApp.pcEnvironment == 'mypurecloud.ie') {
 
@@ -60,10 +69,7 @@
 
 					client.loginImplicitGrant(clientId, redirectUri)
 						.then(() => {
-
-							console.log("client id :" + clientId)
 							let token = client.authData.accessToken;
-
 							getUser();
 
 						})
